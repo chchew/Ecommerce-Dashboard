@@ -1,4 +1,3 @@
-//import React from "react";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React, { PureComponent } from 'react';
 
@@ -16,29 +15,25 @@ import {
   CartesianGrid,
   Bar,
 } from "recharts";
+const arr=[["Maria",30],["Pedro",40],["Juan",50],["Jose",80]]; // aqui van los gets de la info de los chats
 export default function Chart(){
   const data = [
-    { name: "juan", chats: 20 },
-    { name: "Maria", chats: 15 },
-    { name: "Pedro", chats: 10 },
-    { name: "Diego", chats: 50 },
+    { name: arr[0][0], chats: arr[0][1] },
+    { name: arr[1][0], chats: arr[1][1] },
+    { name: arr[2][0], chats: arr[2][1] },
+    { name: arr[3][0], chats: arr[3][1] },
   ];
 
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Personas con mas chats</h1>
-      <div className="App">
-
+      <div  id="userRankingApp"className="App" style={{ textAlign: "center" }}>
+      
         <BarChart
           width={500}
           height={300}
           data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 80,
-            bottom: 5,
-          }}
+          margin="auto"
           barSize={20}
         >
           <XAxis
@@ -56,7 +51,3 @@ export default function Chart(){
     </div>
   );
  
-
-
-
-}
