@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import {db, firebase, auth} from './config/firebase.config';
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
 import {
   PieChart,
   Pie,
@@ -15,8 +17,27 @@ import {
 } from "recharts";
 
 
+
 let usuarios = []
 let chats= []
+
+
+
+function toPDF(){
+ 
+    const input = document.getElementById('chartrankning');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'JPEG',300, 800,50,50);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("charts.pdf");
+      })
+    ;
+}
+
+
 function App() {
 
  
@@ -36,20 +57,16 @@ const [w, setw] = useState(0)
                     chats.push(data.closed)
                     const k= JSON.stringify(doc.data())
                     const q= JSON.parse(k)
-                    console.log(q)
+                   
                     setw(q["closed"])
-                    console.log(w)
+                   
                     dd.push(w)
                     
                 })
-               // this.setState({ users: usuarios })
-                //console.log(usuarios[0])
+            
                 
             })
-console.log(w)
 
-console.log(dd)
-//console.log(usuarios.toString());
 
 const datas = [
   { name: usuarios[0], chats: chats[0] },
@@ -60,10 +77,11 @@ const datas = [
  
  
  return (
-    <div style={{ textAlign: "center" }}>
+   
+    <div style={{ textAlign: "center" }} id="chartadminr">
       <h1>ranking de mejores administradores</h1>
-      <div className="App">
-
+      <div className="App" id="chartrankning">
+      {()=>toPDF()}
         <BarChart
           width={500}
           height={300}
@@ -88,8 +106,10 @@ const datas = [
           <Bar dataKey="chats" fill="#8884d8" background={{ fill: "#eee" }} />
         </BarChart>
       </div>
+      <button onClick= {toPDF} >pdf</button>
     </div>
   );
 };
 
 export default App;
+
