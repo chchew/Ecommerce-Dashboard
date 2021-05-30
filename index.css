@@ -6,3 +6,52 @@ body {
 	background: #f1f1f1;
 	padding: 40px 0;
 }
+
+h2 {
+	font-family: 'Raleway', sans-serif;
+	margin: 0;
+}
+
+.Dashboard {
+	max-width: 800px;
+	width: 80%;
+	margin: auto;
+}
+
+.Graficas {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto 1fr auto);
+	gap: 20px;
+}
+
+.Grafica {
+	padding: 20px;
+	background: whitesmoke;
+	box-shadow: 0 4px 20px rgba(194,194,194,.25);
+	border-radius: 5px;
+
+	display: grid;
+	grid-row: span 3;
+	grid-template-rows: auto 1fr auto;
+	grid-template-rows: subgrid;
+
+	grid-column: span 1;
+	grid-template-columns: repeat(1, 1fr);
+	grid-template-columns: subgrid;
+}
+
+.Grafica .titulo {
+	color: gray;
+	font-size: 20px;
+	margin: 0;
+	grid-column: span 2;
+    text-align: center;
+}
+
+.Grafica .dibujo {
+	line-height: 28px;
+	color: #1E1E1E;
+	margin: 0;
+	grid-column: span 2;
+}
