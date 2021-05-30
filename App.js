@@ -1,8 +1,25 @@
 import React from "react";
 import "./index.css";
 import {Bar} from 'react-chartjs-2';
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
 
+function toPDF(){
+ 
+    const input = document.getElementById('chartrankning');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'JPEG',300, 800,50,50);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("charts.pdf");
+      })
+    ;
+}
 
+function App(){
+//promedio de chats
 const stateprom = {
     chartData: {
         labels: ['20/05/21', '21/05/21', '22/05/21', '23/05/21', '24/05/21', '25/05/21', '26/05/21'],
@@ -44,8 +61,6 @@ const stateprod = {
     ]
   }
 
-class App extends React.Component{
-    render(){
         return(
             <div className="Dashboard">
 
@@ -54,23 +69,35 @@ class App extends React.Component{
                     <div className="Grafica">
                         <h2 className ="titulo">CHATS PROMEDIO</h2>
                         <div className="dibujo">
+                        {()=>toPDF()}
                             <Bar
                             data={stateprom.chartData}
                             />
+                        </div>
+                        <div className="Boton">
+                            <button onClick= {toPDF}> PDF</button>
                         </div>
                     </div>
                     
                     <div className="Grafica">
                         <h2 className ="titulo">CHATS RANKING</h2>
                         <div className="dibujo">
-                            
+                        {()=>toPDF()}
+
+                        </div>
+                        <div className="Boton">
+                            <button onClick= {toPDF}> PDF</button>
                         </div>
                     </div>
 
                     <div className="Grafica">
                         <h2 className ="titulo">CHATS REPORT</h2>
                         <div className="dibujo">
+                        {()=>toPDF()}
 
+                        </div>
+                        <div className="Boton">
+                            <button onClick= {toPDF}> PDF</button>
                         </div>
                     </div>
         
@@ -92,12 +119,15 @@ class App extends React.Component{
                               }}
                             />
                         </div>
+                        <div className="Boton">
+                            <button onClick= {toPDF}> PDF</button>
+                        </div>
                     </div>
 
                 </main>
             </div>
         )
-    }
-}
+    
+};
 
 export default App;

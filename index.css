@@ -8,7 +8,6 @@ body {
 }
 
 h2 {
-	font-family: 'Raleway', sans-serif;
 	margin: 0;
 }
 
@@ -18,10 +17,11 @@ h2 {
 	margin: auto;
 }
 
+
 .Graficas {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, auto 1fr auto);
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(1, auto 1fr auto);
 	gap: 20px;
 }
 
@@ -36,8 +36,8 @@ h2 {
 	grid-template-rows: auto 1fr auto;
 	grid-template-rows: subgrid;
 
-	grid-column: span 1;
-	grid-template-columns: repeat(1, 1fr);
+	grid-column: span 3;
+	grid-template-columns: repeat(3, 1fr);
 	grid-template-columns: subgrid;
 }
 
@@ -45,13 +45,19 @@ h2 {
 	color: gray;
 	font-size: 20px;
 	margin: 0;
-	grid-column: span 2;
-    text-align: center;
+	grid-column: span 3;
+	text-align: center;
 }
 
 .Grafica .dibujo {
 	line-height: 28px;
 	color: #1E1E1E;
 	margin: 0;
-	grid-column: span 2;
+	grid-column: span 3;
+}
+
+.Grafica .Boton {
+	grid-column: span 3;
+	display: grid;
+	grid-template-columns: subgrid;
 }
